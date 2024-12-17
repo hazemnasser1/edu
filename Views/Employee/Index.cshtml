@@ -1,0 +1,30 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Employee Management</title>
+	<link href="~/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Employee Management</h1>
+
+        <nav class="mt-5">
+            <a class="btn btn-primary" href="@Url.Action("DisplayEmployees", "Employee")">Display Employees</a>
+            <a class="btn btn-primary" href="@Url.Action("AddEmployee", "Employee")">Add Employee</a>
+            <a class="btn btn-primary" href="@Url.Action("EditEmployee", "Employee")">Edit Employee</a>
+            <a class="btn btn-primary" href="@Url.Action("SearchEmployee", "Employee")">Search Employee</a>
+            <a class="btn btn-primary" href="@Url.Action("DeleteEmployee", "Employee")">Delete Employee</a>
+
+        </nav>
+
+	</div>
+	<script src="~/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
