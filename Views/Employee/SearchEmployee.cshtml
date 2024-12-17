@@ -22,7 +22,7 @@
         <h1>@ViewData["Title"]</h1>
 
         <!-- Search by Employee ID Form -->
-        <form method="get" action="/Employee/SearchEmployeeById" class="mb-4">
+        <form action="/Employee/SearchEmployeeById" class="mb-4">
             <div class="mb-3">
                 <label for="EmployeeID" class="form-label">Employee ID</label>
                 <input type="number" class="form-control" name="employeeId" id="EmployeeID" />
@@ -31,7 +31,7 @@
         </form>
 
         <!-- Search by Language and Score Form -->
-        <form method="get" action="/Employee/SearchByLanguage">
+        <form action="/Employee/SearchByLanguage">
             <div class="mb-3">
                 <label for="Language" class="form-label">Language</label>
                 <input type="text" class="form-control" name="language" id="Language" />
@@ -51,8 +51,10 @@
                     <tr>
                         <th>ID</th>
                         <th>Name</th>
-                        <th>Language</th>
-                        <th>Score</th>
+                        <th>LastName</th>
+                        <th>Designation</th>
+                        <th>langScores</th>
+                        
                     </tr>
                 </thead>
                 <tbody>

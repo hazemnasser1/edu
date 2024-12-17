@@ -29,13 +29,21 @@ namespace edu.Services
             File.WriteAllText(filePath, intojson);
         }
 
-        public static void AddEmployee(Employee employee)
+        public static Boolean AddEmployee(Employee employee)
         {
             var employees = ReadEmployees();
+            foreach (var Employee in employees)
+            {
+                if (Employee.EmployeeID == employee.EmployeeID)
+                {
+                    return false;
+                }
+            }
 
             employees.Add(employee);
 
             WriteEmployees(employees);
+            return true;
         }
 
 
@@ -57,7 +65,7 @@ namespace edu.Services
         }
 
 
-        public static void UpdateEmployeeDesignation(int employeeId, string newDesignation)
+        public static Employee UpdateEmployeeDesignation(int employeeId, string newDesignation)
         {
             var employees = ReadEmployees();
 
@@ -68,9 +76,10 @@ namespace edu.Services
                     employee.Designation = newDesignation;
 
                     WriteEmployees(employees);
-                    return;
+                    return employee;
                 }
             }
+            return null;
         }
 
 

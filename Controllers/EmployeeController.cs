@@ -10,28 +10,44 @@ namespace edu.Controllers
         {
             return View();
         }
-
-        public IActionResult AddEmployee()
+        [HttpGet]
+        public IActionResult AddEmployee(string msg)
         {
-            return View();
+            return View(msg);
+            
+         
         }
         [HttpPost]
         public IActionResult AddEmployee(Employee emp)
         {
-            if (ModelState.IsValid && emp.KnownLanguages.Count>0)
+            string msg;
+            if (ModelState.IsValid)
             {
-                EmployeeService.AddEmployee(emp); 
-                return RedirectToAction(nameof(Index));
-            }
+                if (EmployeeService.AddEmployee(emp))
+                {
 
-            return View(emp);
+                    msg = "student added successfully";
+                    return View("AddEmployee", msg);
+                }
+            }
+            msg = "student ID already exists";
+            return View("AddEmployee", msg);
         }
 
         [HttpGet]
-        public IActionResult DisplayEmployees()
+        public IActionResult DisplayEmployees(Employee emp)
         {
-            var employees = EmployeeService.ReadEmployees();
-            return View(employees);
+            if (emp.EmployeeID !=0)
+            {
+                List<Employee> employees = new List<Employee>();
+                employees.Add(emp);
+                return View(employees);
+            }
+            else
+            {
+                var employees = EmployeeService.ReadEmployees();
+                return View(employees);
+            }
         }
         [HttpGet]
         public IActionResult EditEmployee()
@@ -41,8 +57,9 @@ namespace edu.Controllers
         [HttpPost]
         public IActionResult EditEmployee(int employeeId, string newDesignation)
         {
-            EmployeeService.UpdateEmployeeDesignation(employeeId, newDesignation);
-            return RedirectToAction("Index");
+            List<Employee> employees = new List<Employee>();
+            employees.Add(EmployeeService.UpdateEmployeeDesignation(employeeId, newDesignation));
+            return View("DisplayEmployees",employees);
         }
 
         [HttpGet]

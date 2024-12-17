@@ -1,4 +1,4 @@
-﻿@model Employee;
+﻿@model string;
 @{
     Layout = null;
 }
@@ -15,6 +15,15 @@
 <body>
     <div class="container mt-5">
         <h1>Add New Employee</h1>
+
+        @if(Model!=null){
+            if(Model.Contains("exists")){
+                <div><p class="text-danger">@Model</p></div>
+            }
+            else{
+                <div><p class="text-success">@Model</p></div>
+            }
+        }
 
         <form method="post" asp-action="AddEmployee">
             <div class="mb-3">
